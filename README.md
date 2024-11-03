@@ -1,4 +1,4 @@
-## End-to-End Bank Application Deployment using DevSecOps on AWS EKS
+## End-to-End Bank Application Deployment using DevOps on AWS EC2
 - This is a multi-tier bank an application written in Java (Springboot).
 
 ![Login diagram](images/login.png)
@@ -9,22 +9,11 @@
 - AWS Ubuntu EC2 instance (t2.medium)
 - Install Docker
 - Install docker compose
-#
-### DEPLOYMENT:
-| Deployments    | Paths |
-| -------- | ------- |
-| Deployment using Docker and Networking | <a href="#Docker">Click me </a>     |
-| Deployment using Docker Compose | <a href="#dockercompose">Click me </a>     |
-| Deployment using Jenkins on EKS | <a href="#">Click me </a>     |
-| Deployment using Argocd on EKS| <a href="#">Click me </a>     |
 
-#
-### STEPS TO IMPLEMENT THE PROJECT
+### STEPS TO IMPLEMENT THE PROJECT MANUALLY
 - **<p id="Docker">Deployment using Docker</p>**
   - Clone the repository
-  ```bash
-  git clone -b DevOps https://github.com/DevMadhup/Springboot-BankApp.git
-  ```
+    
   #
   - Install docker, docker compose and provide neccessary permission
   ```bash
@@ -42,10 +31,8 @@
   #
   - Build the Dockerfile
   ```bash
-  docker build -t madhupdevops/springboot-bankapp .
+  docker build -t <docker_username>/springboot-bankapp .
   ```
-> [!Important]
-> Make sure to change docker build command with your DockerHub username.
   #
   - Create a docker network
   ```bash
@@ -89,6 +76,8 @@ docker compose up -d
 ```bash
   http://<public-ip>:8080
 ```
-> [!Important]
-> If you face issues with exiting docker container while running docker compose, run ``` docker compose down``` and then ``` docker compose up -d ```.
-#
+
+### Create CICD pipeline
+- **<p id="Docker">Creating CICD pipeline using Jenkins</p>**
+  - Configure Jenkins master and worker node
+  - Create a job and add Jenkinsfile from remote repository, it will automate building of docker image and pusing to docker hub and deployment of conatiners.
